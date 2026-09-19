@@ -113,7 +113,7 @@ function loadJSMpeg(): Promise<JSMpegNS | null> {
   if (!jsmpegPromise) {
     jsmpegPromise = new Promise<JSMpegNS | null>((resolve) => {
       const s = document.createElement("script");
-      s.src = "/vendor/jsmpeg.min.js";
+      s.src = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/vendor/jsmpeg.min.js`;
       s.async = true;
       s.onload = () => resolve((window as unknown as { JSMpeg?: JSMpegNS }).JSMpeg ?? null);
       s.onerror = () => resolve(null);
