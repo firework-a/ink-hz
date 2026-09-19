@@ -5,7 +5,7 @@ import WebglScene from "./WebglScene";
 import { bmfontTextURL } from "./bmfont-dom";
 import { vertical } from "./bmfont";
 
-const ASSET = "/assets";
+const ASSET = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets`;
 const RES_VERSION = "1.0.1";
 const CODE_VERSION = "1.0.0";
 const CONTACT_URL = "https://github.com/firework-a/ink-hz";

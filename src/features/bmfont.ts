@@ -55,7 +55,7 @@ export type BmFont = BmFontData & {
   build(layout: BmLayout, setting?: BmSetting): BmGeometry;
 };
 
-export const FONT_ATLAS = "/assets/font/xingcao.png";
+export const FONT_ATLAS = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets/font/xingcao.png`;
 
 const raw = fntJson as unknown as BmFontData;
 

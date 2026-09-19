@@ -15,7 +15,7 @@ import treesAData from "./data/treesA.json";
 import treesBData from "./data/treesB.json";
 import treesCData from "./data/treesC.json";
 
-const ASSET = "/assets";
+const ASSET = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets`;
 const MODELS = `${ASSET}/models`;
 
 type Vec3 = { position: [number, number, number] } | { name?: string; position: number[] };
