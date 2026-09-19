@@ -174,7 +174,11 @@ function GuideOverlay({ visible, ready, onClose }: { visible: boolean; ready: bo
   return (
     <div
       className="Gudie-container"
-      style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
+      style={{
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        visibility: visible ? "visible" : "hidden",
+      }}
     >
       <div className="back" />
       <div className="content" style={{ backgroundImage: `url("${ASSET}/textures/Contact-Background.webp")` }}>

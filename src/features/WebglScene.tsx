@@ -610,7 +610,12 @@ export default function WebglScene({ loadingRef }: { loadingRef: React.RefObject
     // input handlers (original _onMouseDown/_onMouseUp/_onMouseMove/_onMouseWheel)
     let mouseDown = false;
     const preLoc = new THREE.Vector2();
-    const onDown = (e: PointerEvent) => { mouseDown = true; preLoc.set(e.pageX, e.pageY); };
+    const onDown = (e: PointerEvent) => {
+      mouseDown = true;
+      preLoc.set(e.pageX, e.pageY);
+      gl.domElement.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    };
     const onUp = () => { mouseDown = false; ctrl.rayHeight = getLandHeight(); };
     const onMove = (e: PointerEvent) => {
       if (!mouseDown) return;
@@ -626,10 +631,12 @@ export default function WebglScene({ loadingRef }: { loadingRef: React.RefObject
         ? Math.min(ctrl.maxArmLen, ctrl.targetArmLen + e.deltaY * 0.001 * ctrl.currentArmLen)
         : Math.max(ctrl.minArmLen, ctrl.targetArmLen + e.deltaY * 0.001 * ctrl.currentArmLen);
     };
+    const onDragStart = (e: Event) => e.preventDefault();
     gl.domElement.addEventListener("pointerdown", onDown);
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointermove", onMove);
     gl.domElement.addEventListener("wheel", onWheel);
+    gl.domElement.addEventListener("dragstart", onDragStart);
 
     // tags raycast (original sign plugin: hover scale + click select)
     const raycaster = new THREE.Raycaster();
@@ -1106,6 +1113,7 @@ export default function WebglScene({ loadingRef }: { loadingRef: React.RefObject
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointermove", onMove);
       gl.domElement.removeEventListener("wheel", onWheel);
+      gl.domElement.removeEventListener("dragstart", onDragStart);
       gl.domElement.removeEventListener("pointermove", onPointerMove);
       gl.domElement.removeEventListener("click", onMouseClick);
       window.removeEventListener("gmhz-move-center", onMoveCenter);

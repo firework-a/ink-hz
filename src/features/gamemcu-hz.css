@@ -176,11 +176,18 @@
 
 .gamemcu-hz-page .Gudie-container .content img {
   filter: invert(100%);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .gamemcu-hz-page .Gudie-hint-img {
   width: 10vh;
   margin: 2vh;
+}
+
+.gamemcu-hz-page img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .gamemcu-hz-page .Gudie-container .content .continue {
