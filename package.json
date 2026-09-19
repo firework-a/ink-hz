@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm run build",
     "deploy:pages": "cross-env NEXT_PUBLIC_BASE_PATH=/ink-hz next build",
-    "deploy": "npm run deploy:pages && gh-pages -d out -t true --dotfiles"
+    "deploy": "npm run deploy:pages && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "meshoptimizer": "^1.2.0",
